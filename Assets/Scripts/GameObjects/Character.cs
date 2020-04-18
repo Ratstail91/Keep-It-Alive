@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour {
 	//components
@@ -16,9 +17,14 @@ public class Character : MonoBehaviour {
 	const float maxSpeed = 60f;
 	const float moveForce = 400f;
 
+	//hunting
+	FadeToBlack fadeToBlack;
+	float huntingTime;
+
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb = GetComponent<Rigidbody2D>();
+		fadeToBlack = GetComponent<FadeToBlack>();
 	}
 
 	void Update() {
@@ -28,6 +34,7 @@ public class Character : MonoBehaviour {
 	void FixedUpdate() {
 		HandleMovement();
 		HandleAnimation();
+		HandleHunted();
 	}
 
 	void HandleInput() {
@@ -63,5 +70,17 @@ public class Character : MonoBehaviour {
 	void HandleAnimation() {
 		spriteRenderer.sortingOrder = -(int)Mathf.Floor(transform.localPosition.y * 100);
 		spriteRenderer.flipX = lastHorizontalInput > 0f;
+	}
+
+	void HandleHunted() {
+		if (fadeToBlack.brightness < 0f) {
+			huntingTime -= Time.deltaTime;
+		} else {
+			huntingTime = 3f;
+		}
+
+		if (huntingTime <= 0f) {
+			SceneManager.LoadScene("Claws");
+		}
 	}
 }

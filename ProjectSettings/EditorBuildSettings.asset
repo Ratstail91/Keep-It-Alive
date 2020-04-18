@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6bb7cd769e1d533e892d6113a1aa1d13
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+    guid: 1b88e28e078aaa13a81624c57860c6a5
+  - enabled: 1
+    path: Assets/Scenes/FireGoesOut.unity
+    guid: 58ac84de107364d77ba7e0ea5e8fe35c
+  - enabled: 1
+    path: Assets/Scenes/Claws.unity
+    guid: 13f34fd742a4db4bb8ab277ac9fe0259
   m_configObjects: {}

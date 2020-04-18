@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour {
 	[SerializeField]
-	GameObject tilePrefab;
+	GameObject tilePrefab = null;
 
 	[SerializeField]
-	GameObject treePrefab;
+	GameObject treePrefab = null;
+
+	[SerializeField]
+	GameObject eyesPrefab = null;
 
 	void Awake() {
 		//generate tiles
@@ -20,15 +23,19 @@ public class Ground : MonoBehaviour {
 		}
 
 		for (int i = 0; i < 50; i++) {
-			GenerateTree(5, size);
+			GenerateEntity(treePrefab, 5, size);
 		}
 
-		for (int i = 0; i < 3; i++) {
-			GenerateTree(2, 5);
+		for (int i = 0; i < 3 && eyesPrefab; i++) {
+			GenerateEntity(treePrefab, 2, 5);
+		}
+
+		for (int i = 0; i < 20 && eyesPrefab != null; i++) {
+			GenerateEntity(eyesPrefab, 5, 10);
 		}
 	}
 
-	void GenerateTree(float near, float far) {
+	void GenerateEntity(GameObject prefab, float near, float far) {
 		//geenrate trees
 		float direction = Random.Range(0, 360); //angle
 		float distance = Random.Range(near, far); //H & A
@@ -37,6 +44,6 @@ public class Ground : MonoBehaviour {
 		float sin = Mathf.Sin(direction * Mathf.PI / 180f);
 		float cos = Mathf.Cos(direction * Mathf.PI / 180f);
 
-		Instantiate(treePrefab, new Vector3(distance * cos * 32, distance * sin * 32, 0), Quaternion.identity, transform);
+		Instantiate(prefab, new Vector3(distance * cos * 32, distance * sin * 32, 0), Quaternion.identity, transform);
 	}
 }

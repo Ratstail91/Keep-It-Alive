@@ -6,6 +6,9 @@ public class FadeToBlack : MonoBehaviour {
 	LevelController levelController;
 	SpriteRenderer spriteRenderer;
 
+	public float distance;
+	public float brightness;
+
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
@@ -17,8 +20,8 @@ public class FadeToBlack : MonoBehaviour {
 
 	void HandleAnimation() {
 		//determine the brightness based on distance from the center of the tilemap
-		float distance = Vector3.Distance(transform.localPosition, Vector3.zero) / 32f;
-		float brightness = 1 - Mathf.Log(distance, 10) + levelController.globalLightLevel - 0.5f;
+		distance = Vector3.Distance(transform.localPosition, Vector3.zero) / 32f;
+		brightness = 1 - Mathf.Log(distance, 10) + levelController.globalLightLevel - 0.5f;
 
 		Color color = Color.white;
 		color.r = brightness;

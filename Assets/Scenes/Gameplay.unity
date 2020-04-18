@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalLightLevel: 1
   increment: -0.00027
+  globalWood: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +262,7 @@ GameObject:
   - component: {fileID: 549122372}
   - component: {fileID: 549122374}
   - component: {fileID: 549122375}
+  - component: {fileID: 549122376}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -365,6 +367,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
+--- !u!58 &549122376
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549122371}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 40
 --- !u!1 &708403710
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +660,8 @@ MonoBehaviour:
   tilePrefab: {fileID: 7774004014614795595, guid: a502626c7fe3139d88fe524e1e4516c5,
     type: 3}
   treePrefab: {fileID: 5537780838073177683, guid: 600eb996560bbd16db2cf42f5b7f9d49,
+    type: 3}
+  eyesPrefab: {fileID: 1390159241359991612, guid: 105b22f5dd543b957b260d8db6cdf17c,
     type: 3}
 --- !u!4 &2042861700
 Transform:

@@ -33,6 +33,14 @@ public class Fire : MonoBehaviour {
 		HandleAnimation();
 	}
 
+	void OnTriggerStay2D() {
+		if (GamePad.GetState().Pressed(CButton.Y) && levelController.globalWood > 0) {
+			levelController.globalWood -= 1;
+			levelController.globalLightLevel += 0.2f;
+			levelController.globalLightLevel = Mathf.Clamp(levelController.globalLightLevel, 0f, 1f);
+		}
+	}
+
 	void HandleAnimation() {
 		animator.SetInteger("size", size);
 	}
