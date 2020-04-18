@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour {
 	Animator animator;
 	LevelController levelController;
+	AudioController audioController;
 
 	[SerializeField]
 	int size = 1;
@@ -12,6 +13,7 @@ public class Fire : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator>();
 		levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
+		audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 	}
 
 	void Start() {
@@ -38,6 +40,8 @@ public class Fire : MonoBehaviour {
 			levelController.globalWood -= 1;
 			levelController.globalLightLevel += 0.2f;
 			levelController.globalLightLevel = Mathf.Clamp(levelController.globalLightLevel, 0f, 1f);
+
+			audioController.Play("crackle");
 		}
 	}
 

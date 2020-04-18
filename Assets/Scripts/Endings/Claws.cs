@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Claws : MonoBehaviour {
 	SpriteRenderer spriteRenderer;
+	AudioController audioController;
 
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
 
 		StartCoroutine(FadeOverTime(2f));
 		StartCoroutine(SwitchScenesAfter("MainMenu", 5f));
+
+		audioController.StopAll();
 	}
 
 	IEnumerator FadeOverTime(float delay) {

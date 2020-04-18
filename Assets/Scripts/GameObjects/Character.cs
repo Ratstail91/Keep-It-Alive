@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour {
+	//references
+	AudioController audioController;
+
 	//components
 	SpriteRenderer spriteRenderer;
 	Rigidbody2D rb;
@@ -22,6 +25,8 @@ public class Character : MonoBehaviour {
 	float huntingTime;
 
 	void Awake() {
+		audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rb = GetComponent<Rigidbody2D>();
 		fadeToBlack = GetComponent<FadeToBlack>();
@@ -75,8 +80,13 @@ public class Character : MonoBehaviour {
 	void HandleHunted() {
 		if (fadeToBlack.brightness < 0f) {
 			huntingTime -= Time.deltaTime;
+
+			if (!audioController.GetPlaying("hunted")) {
+				audioController.Play("hunted");
+			}
 		} else {
 			huntingTime = 3f;
+			audioController.Stop("hunted");
 		}
 
 		if (huntingTime <= 0f) {

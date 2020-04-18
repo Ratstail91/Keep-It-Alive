@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour {
 	static LevelController levelController;
+	static AudioController audioController;
 	static GameObject character;
 
 	SpriteRenderer spriteRenderer;
@@ -19,6 +20,10 @@ public class Tree : MonoBehaviour {
 			levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
 		}
 
+		if (!audioController) {
+			audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+		}
+
 		if (!character) {
 			character = GameObject.Find("Character");
 		}
@@ -27,6 +32,8 @@ public class Tree : MonoBehaviour {
 	void OnTriggerStay2D() {
 		if (GamePad.GetState().Pressed(CButton.Y)) {
 			life -= 1;
+
+			audioController.Play("cut");
 
 			//wiggle
 			StartCoroutine(Wiggle());

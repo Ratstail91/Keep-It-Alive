@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FireGoesOut : MonoBehaviour {
+	AudioController audioController;
+
 	void Awake() {
-		//TODO: play extinguished sound
+		audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
+
 		StartCoroutine(SwitchScenesAfter("MainMenu", 3f));
+
+		audioController.StopAll();
 	}
 
 	IEnumerator SwitchScenesAfter(string sceneName, float delay) {
